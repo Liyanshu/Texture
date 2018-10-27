@@ -59,6 +59,12 @@ Pod::Spec.new do |spec|
     yoga.dependency 'Texture/Core'
   end
 
+  # If flag is enabled the old TextNode with all dependencies will be compiled out
+  spec.subspec 'TextNode2' do |text_node|
+    text_node.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) AS_ENABLE_TEXTNODE=0' }
+    text_node.dependency 'Texture/Core'
+  end
+
   spec.subspec 'MapKit' do |map|
     map.frameworks = ['CoreLocation', 'MapKit']
     map.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) AS_USE_MAPKIT=1' }
